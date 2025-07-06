@@ -9,8 +9,20 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export function ExpenseChart({ transactions }) {
-  const data = transactions.reduce((acc, txn) => {
+// Define the type for a transaction
+type Transaction = {
+  amount: number;
+  date: string;
+  description: string;
+};
+
+// Define the props type
+interface ExpenseChartProps {
+  transactions: Transaction[];
+}
+
+export function ExpenseChart({ transactions }: ExpenseChartProps) {
+  const data = transactions.reduce<{ name: string; total: number }[]>((acc, txn) => {
     const month = new Date(txn.date).toLocaleString("default", { month: "short" });
     const found = acc.find((d) => d.name === month);
     if (found) {
