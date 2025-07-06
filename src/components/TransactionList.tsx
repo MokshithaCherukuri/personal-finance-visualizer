@@ -1,6 +1,16 @@
 "use client";
 
-export function TransactionList({ transactions }) {
+type Transaction = {
+  amount: number;
+  date: string;
+  description: string;
+};
+
+interface TransactionListProps {
+  transactions: Transaction[];
+}
+
+export function TransactionList({ transactions }: TransactionListProps) {
   return (
     <div className="mt-4">
       <h2 className="text-xl font-semibold mb-2">Transactions</h2>
