@@ -5,10 +5,16 @@ import { TransactionForm } from "./TransactionForm";
 import { TransactionList } from "./TransactionList";
 import { ExpenseChart } from "./ExpenseChart";
 
-export default function Dashboard() {
-  const [transactions, setTransactions] = useState([]);
+type Transaction = {
+  amount: number;
+  date: string;
+  description: string;
+};
 
-  const handleAddTransaction = (txn) => {
+export default function Dashboard() {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+
+  const handleAddTransaction = (txn: Transaction) => {
     setTransactions([...transactions, txn]);
   };
 
